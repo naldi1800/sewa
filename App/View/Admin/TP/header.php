@@ -40,6 +40,9 @@
                        href="?page=home&c=index">Home</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link <?= ($page == 'Mid') ? 'active' : '' ?> text-center" href="?page=mid&c=index">Mid</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link <?= ($page == 'Barang') ? 'active' : '' ?> text-center" href="?page=barang&c=index">Data Barang</a>
                 </li>
                 <li class="nav-item">

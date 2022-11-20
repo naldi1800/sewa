@@ -5,6 +5,7 @@ abstract class Data
     protected static $t_barang = "barang";
     protected static $t_sewa = "sewa";
     protected static $t_user = "user";
+    protected static $t_mid = "mid";
 
     protected static $ImageFolder = "App/Image/Mahasiswa/";
 
