@@ -64,14 +64,8 @@ if (isset($_POST['login'])) {
                 <div class="row justify-content-center">
                     <div class="col-md-12 col-lg-10">
                         <div class="wrap d-md-flex">
-                            <!-- <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center order-md-last">
-                                <div class="text w-100">
-                                    <h2>Welcome to login</h2>
-                                    <!-- <p id="ketbukan">bukan admin?</p> -->
-                                    <!-- <button class="btn btn-white btn-outline-white" id="ch">Admin</button> -->
-                                <!-- </div> -->
-                            <!-- </div> -->
-                            <div class="login-wrap p-4 p-lg-5 col-12">
+                            
+                            <div class="login-wrap p-4 p-lg-5 order-md-last">
                                 <div class="d-flex">
                                     <div class="w-100">
                                         <h3 class="mb-4" id="ket">Admin</h3>
@@ -93,12 +87,22 @@ if (isset($_POST['login'])) {
                                     <input type="text" name="level" id="level" value="Admin" hidden>
                                     <div class="form-group">
                                         <button type="submit" name="login"
-                                                class="form-control btn submit px-3" style="background-color: cadetblue;">
+                                                class="form-control btn submit px-3" style="background-color: blue; color: white;">
                                             Login
                                         </button>
                                     </div>
                                 </form>
                             </div>
+                            <!-- <div> -->
+                                <img src="<?= BASEURL ?>/App/Image/logo.png" class="col-6 p-4 p-lg-5  d-flex align-items-center">
+                            <!-- </div> -->
+                            <!-- <div class="text-wrap p-4 p-lg-5 text-center d-flex align-items-center ">
+                                <div class="text w-100">
+                                    <h2>Welcome to login</h2>
+                                    <p id="ketbukan">bukan admin?</p>
+                                    <button class="btn btn-white btn-outline-white" id="ch">Admin</button>
+                                </div>
+                             </div> -->
                         </div>
                     </div>
                 </div>

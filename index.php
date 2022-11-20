@@ -12,12 +12,15 @@ $content = isset($_GET['c']) ? $_GET['c'] : "index";
 
 $page = ucfirst($page);
 
-// if (!isset($_SESSION['isLogin'])) {
-//     header("Location: login.php");
-//     exit;
-// } else 
-if (!isset($_SESSION['ADMIN'])) {
+if (!isset($_SESSION['isLogin'])) {
+    header("Location: login.php");
+    exit;
+} else if (isset($_SESSION['ADMIN'])) {
     require_once "App/View/Admin/TP/header.php"; // REQUIRE Header Page Admin
     require_once "App/View/Admin/$page/$content.php"; // REQUIRE Content Page Admin
     require_once "App/View/Admin/TP/footer.php"; // REQUIRE Footer Page Admin
+} else if (isset($_SESSION['USER'])){
+    require_once "App/View/User/TP/header.php"; // REQUIRE Header Page Admin
+    require_once "App/View/User/$page/$content.php"; // REQUIRE Content Page Admin
+    require_once "App/View/User/TP/footer.php"; // REQUIRE Footer Page Admin
 }

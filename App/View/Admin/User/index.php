@@ -22,6 +22,7 @@
 
         $i = 0;
         $datas = User::GetAll($link);
+        if($datas != null):
         foreach ($datas as $data) :
             $i++;
         ?>
@@ -45,6 +46,12 @@
                     </center>
                 </td> -->
             </tr>
-        <?php endforeach; ?>
+            <?php endforeach;else: ?>
+            <tr>
+                <td colspan="8" class="text-center">
+                    Data Masih Kosong
+                </td>
+            </tr>
+            <?php endif; ?>
     </tbody>
 </table>
