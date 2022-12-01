@@ -1,27 +1,37 @@
 <?php
 
-use App\Model\Barang;
+use App\Model\User;
 
 
 if (isset($_POST["ubah"])) {
-    Barang::Update($link,  $_POST['id_barang'],  $_POST);
-    header("Location: index.php?page=barang&c=index");
+    User::Update($link,  $_POST['id_user'],  $_POST);
+    header("Location: index.php?page=profil&c=index");
     exit;
 }
 
 if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    $data = Barang::GetWithId($link, $id);
+    $data = User::GetWithId($link, $id);
 ?>
     <div class="col-lg-8 mx-auto border rounded-3 border-primary">
         <h2 class="h2 text-center mt-3">
-            Form Ubah Barang
+            Edit Profile
         </h2>
         <form class="row g-3 needs-validation p-3" method="post" enctype="multipart/form-data" novalidate>
-            <input type="text" class="form-control" id="id_barang" name="id_barang" value="<?= $data['id_barang'] ?>" hidden>
-            <div class="col-md-12">
-                <label for="nama_barang" class="form-label">Nama Barang</label>
-                <input type="text" class="form-control" value="<?= $data['nama_barang'] ?>" id="nama_barang" name="nama_barang" minlength="3" required>
+            <input type="text" class="form-control" id="id_user" name="id_user" value="<?= $data['id_user'] ?>" hidden>
+            <div class="col-md-6">
+                <label for="nik" class="form-label">Nomor Induk Kependudukan</label>
+                <input type="text" class="form-control" value="<?= $data['nik'] ?>" id="nik" name="nik" minlength="16" maxlength="16" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
+                <div class="invalid-feedback">
+                    Please enter at least 3 letters
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label for="namalengkap" class="form-label">Nama Lengkap</label>
+                <input type="text" class="form-control" value="<?= $data['namalengkap'] ?>" id="namalengkap" name="namalengkap" minlength="3" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -30,33 +40,33 @@ if (isset($_GET['id'])) {
                 </div>
             </div>
             <div class="col-md-4">
-                <label for="harga_sewa" class="form-label">Harga Sewa</label>
-                <input type="text" class="form-control" value="<?= $data['harga_sewa'] ?>" id="harga_sewa" name="harga_sewa" required>
+                <label for="tanggallahir" class="form-label">Tangggal Lahir</label>
+                <input type="date" class="form-control" value="<?= $data['tanggallahir'] ?>" id="tanggallahir" name="tanggallahir" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
                 <div class="invalid-feedback">
-                    Please enter in the Harga
+                    Please enter in the tanggal lahir
                 </div>
             </div>
             <div class="col-md-4">
-                <label for="diskon" class="form-label">Diskon</label>
-                <input type="number" class="form-control" value="<?= $data['diskon'] ?>" id="diskon" min="0" max="100" name="diskon" required>
+                <label for="alamat" class="form-label">Alamat</label>
+                <input type="text" class="form-control" value="<?= $data['alamat'] ?>" id="alamat" name="alamat" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
                 <div class="invalid-feedback">
-                    Please enter in the Diskon
+                    Please enter in the alamat
                 </div>
             </div>
             <div class="col-md-4">
-                <label for="stok" class="form-label">Stok</label>
-                <input type="number" class="form-control" value="<?= $data['stok'] ?>" id="stok" min="0" name="stok" disabled>
+                <label for="notelp" class="form-label">No telephone</label>
+                <input type="text" class="form-control" value="<?= $data['notelp'] ?>" id="notelp" name="notelp" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
                 <div class="invalid-feedback">
-                    Please enter in the Stok
+                    Please enter in the no telephone
                 </div>
             </div>
             <div class="col-12">
@@ -87,7 +97,7 @@ if (isset($_GET['id'])) {
     </script>
 <?php
 } else {
-    header("Location: " . BASEURL . "/index.php?page=barang&c=index");
+    header("Location: " . BASEURL . "/index.php?page=profil&c=index");
     exit;
 }
 ?>

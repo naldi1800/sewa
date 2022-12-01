@@ -18,7 +18,6 @@ class User extends Data
         while ($result = mysqli_fetch_array($query)) {
             $data[] = $result;
         }
-
         return $data;
     }
 
@@ -28,53 +27,71 @@ class User extends Data
         $query = mysqli_query($link, $sql);
         return mysqli_fetch_assoc($query);
     }
+    public static function GetOldPasswordWithId($link, $id, $pass)
+    {
+        $sql = "SELECT id_user, Password FROM " . parent::$t_user . " WHERE id_user='$id' AND Password='$pass'";
+        $query = mysqli_query($link, $sql);
+        return mysqli_fetch_assoc($query);
+    }
 
     public static function Update($link, $id, $data)
     {
         $sql = "UPDATE " . parent::$t_user . " SET " .
-            "nama_barang='" . $data['nama_barang'] .  "' ,".
-            "harga_sewa='" . $data['harga_sewa'] .  "' ,".
-            "diskon='" . $data['diskon'] .  "' ".
-            // "stok='" . $data['stok'] . 
-            " WHERE id_barang='" . $id . "'";
+            "nik='" . $data['nik'] .  "' ," .
+            "namalengkap='" . $data['namalengkap'] .  "' ," .
+            "alamat='" . $data['alamat'] .  "' ," .
+            "notelp='" . $data['notelp'] .  "' ," .
+            "tanggallahir='" . $data['tanggallahir'] .  "' , updatetime=CURRENT_TIMESTAMP" .
+            " WHERE id_user='" . $id . "'";
 
         $query = mysqli_query($link, $sql);
-        var_dump($sql);
         if ($query) {
-            Alert::Set("Data barang", "diubah", "berhasil");
+            Alert::Set("Data", "diubah", "berhasil");
         } else {
-            Alert::Set("Data barang", "diubah", "gagal");
-           echo "Error : " . mysqli_error($link);
+            Alert::Set("Data", "diubah", "gagal");
+            echo "Error : " . mysqli_error($link);
         }
+    }
+
+    public static function UpdatePassword($link, $id, $data)
+    {
+        if (self::GetOldPasswordWithId($link, $id, md5($data['oldpass'])) != null) {
+            $newpass = md5($data['newpass']);
+            $sql = "UPDATE " . parent::$t_user . " SET " .
+                "Password='$newpass' , updatetime=CURRENT_TIMESTAMP" .
+                " WHERE id_user='" . $id . "'";
+
+            $query = mysqli_query($link, $sql);
+            if ($query) {
+                Alert::Set("Password", "diubah", "berhasil");
+                session_destroy();
+            } else {
+                Alert::Set("Password", "diubah", "gagal");
+                echo "Error : " . mysqli_error($link);
+            }
+        }else Alert::Set("Password", "diubah, pastikan password lama benar", "gagal");
     }
 
     public static function Delete($link, $id)
     {
-        $sql = "DELETE FROM " . parent::$t_user . " WHERE id_barang='" . $id . "'";
+        $sql = "DELETE FROM " . parent::$t_user . " WHERE id_user='" . $id . "'";
         $query = mysqli_query($link, $sql);
         if ($query) {
-            Alert::Set("Data barang", "dihapus", "berhasil");
+            Alert::Set("Data User", "dihapus", "berhasil");
         } else {
-            Alert::Set("Data barang", "dihapus", "gagal");
+            Alert::Set("Data User", "dihapus", "gagal");
         }
     }
 
     public static function Insert($link, $data)
     {
-        $sql = "INSERT INTO " . parent::$t_user . " VALUES( null, '"
-            . $data['nama_barang'] . "','"
-            . $data['harga_sewa'] . "','"
-            . $data['diskon'] . "','"
-            . $data['stok'] . "', '0000-00-00 00:00:00','0000-00-00 00:00:00')";
-        
-        // var_dump($sql);
-        $query = mysqli_query($link, $sql);
-        
-        if ($query) {
-            Alert::Set("Data barang", "disimpan", "berhasil");
-        } else {
-            Alert::Set("Data barang", "disimpan", "gagal");
-        //    echo "Error : " . mysqli_error($link);
-        }
+        $user = $data['user'];
+        $pass = md5($data['pass']);
+        $email = $data['email'];
+        $table = parent::$t_user;
+
+        $sql = "INSERT INTO $table (id_user, Username, Password, email, createtime, updatetime) VALUE (null, '$user', '$pass', '$email', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP)";
+        mysqli_query($link, $sql);
+        echo mysqli_error($link);
     }
 }

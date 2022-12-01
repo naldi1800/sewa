@@ -20,7 +20,7 @@
     <script src="<?= BASEURL ?>/TP/dselect.js"></script>
 
     <!-- <title>Admin | <?= $page ?></title> -->
-    <title>User - <?= $$_SESSION['USER'] ?></title>
+    <title>User - <?= $_SESSION['USER']['user'] ?></title>
 </head>
 <body>
 
@@ -40,11 +40,11 @@
                        href="?page=home&c=index">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= ($page == 'Barang') ? 'active' : '' ?> text-center" href="?page=barang&c=index">Data Barang</a>
+                    <a class="nav-link <?= ($page == 'Barang') ? 'active' : '' ?> text-center" href="?page=barang&c=index">Barang</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= ($page == 'User') ? 'active' : '' ?> text-center"
-                       href="?page=user&c=index">Data User</a>
+                    <a class="nav-link <?= ($page == 'Profil') ? 'active' : '' ?> text-center"
+                       href="?page=Profil&c=index">Profil</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"

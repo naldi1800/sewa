@@ -32,20 +32,26 @@ class Barang extends Data
     public static function Update($link, $id, $data)
     {
         $sql = "UPDATE " . parent::$t_barang . " SET " .
-            "nama_barang='" . $data['nama_barang'] .  "' ,".
-            "harga_sewa='" . $data['harga_sewa'] .  "' ,".
-            "diskon='" . $data['diskon'] .  "' ".
-            // "stok='" . $data['stok'] . 
+            "nama_barang='" . $data['nama_barang'] .  "' ," .
+            "harga_sewa='" . $data['harga_sewa'] .  "' ," .
+            "diskon='" . $data['diskon'] .  "', " .
+            "updatetime=CURRENT_TIMESTAMP" .
             " WHERE id_barang='" . $id . "'";
 
         $query = mysqli_query($link, $sql);
-        var_dump($sql);
         if ($query) {
             Alert::Set("Data barang", "diubah", "berhasil");
         } else {
             Alert::Set("Data barang", "diubah", "gagal");
-           echo "Error : " . mysqli_error($link);
+            // echo "Error : " . mysqli_error($link);
         }
+    }
+
+    public static function UpdateStok($link, $id, $qyt, $add = false)
+    {
+        // $sql = "UPDATE " .  parent::$t_barang . " SET stok=stok-$qyt WHERE id_barang='$id'";
+        $sql = "UPDATE " .  parent::$t_barang . " SET stok=stok" . ($add ? "+" : "-") . "$qyt WHERE id_barang='$id'";
+        mysqli_query($link, $sql);
     }
 
     public static function Delete($link, $id)
@@ -65,16 +71,16 @@ class Barang extends Data
             . $data['nama_barang'] . "','"
             . $data['harga_sewa'] . "','"
             . $data['diskon'] . "','"
-            . $data['stok'] . "', '0000-00-00 00:00:00','0000-00-00 00:00:00')";
-        
+            . $data['stok'] . "', CURRENT_TIMESTAMP,CURRENT_TIMESTAMP)";
+
         // var_dump($sql);
         $query = mysqli_query($link, $sql);
-        
+
         if ($query) {
             Alert::Set("Data barang", "disimpan", "berhasil");
         } else {
             Alert::Set("Data barang", "disimpan", "gagal");
-        //    echo "Error : " . mysqli_error($link);
+            //    echo "Error : " . mysqli_error($link);
         }
     }
 }

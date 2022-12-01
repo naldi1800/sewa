@@ -1,9 +1,6 @@
 <h2 class="h2 text-center">
-    Data Peminjaman
+    Data Barang Yang Dipinjam
 </h2>
-
-
-
 <table class="table table-hover table-bordered">
     <thead class="bg-secondary text-white text-center">
         <tr class="text-center align-middle">
@@ -25,7 +22,7 @@
         use App\Contorller\Fungsi;
         use App\Model\Peminjaman;
 
-        $datas = Peminjaman::GetAll($link);
+        $datas = Peminjaman::GetAllWithUserId($link, $_SESSION['USER']['id']);
         $no = 0;
         foreach ($datas as $data) :
             $no++;
@@ -43,26 +40,14 @@
                 <td width="15%" class="">
                     <center>
                         <?php if ($data['keterangan'] == "Waiting") : ?>
-                            <a onclick="confirm('Yakin ?')" href="?page=peminjaman&c=proses&id=<?= $data['id_sewa'].'&p=Confirmation' ?>" class="text-center btn btn-success">
-                                Konfirmasi
+                            <a onclick="confirm('Yakin ?')" href="?page=home&c=hapus&id=<?= $data['id_sewa'] ?>" class="text-center btn btn-danger">
+                                Batalkan
                             </a>
-                        <?php elseif ($data['keterangan'] == "Confirmation") : ?>
-                            <a onclick="confirm('Yakin ?')" href="?page=peminjaman&c=proses&id=<?= $data['id_sewa'].'&p=Delivery' ?>" class="text-center btn btn-success">
-                                Kirim
-                            </a>
-                        <?php elseif ($data['keterangan'] == "Delivery") : ?>
-                            <a onclick="confirm('Yakin ?')" href="?page=peminjaman&c=proses&id=<?= $data['id_sewa'].'&p=Arrived' ?>" class="text-center btn btn-success">
-                                Sampai
-                            </a>
-                        <?php elseif ($data['keterangan'] == "Arrived") : ?>
-                            <a onclick="confirm('Yakin ?')" href="?page=peminjaman&c=proses&id=<?= $data['id_sewa'].'&p=Returned' ?>" class="text-center btn btn-success">
-                                Kembali
-                            </a>
+                        <?php else : ?>
+                            Tidak dapat dibatalkan lagi
                         <?php endif; ?>
 
-                        <a onclick="confirm('Yakin ?')" href="?page=peminjaman&c=hapus&id=<?= $data['id_sewa'] ?>" class="text-center btn btn-danger">
-                            Hapus
-                        </a>
+
                     </center>
                 </td>
             </tr>

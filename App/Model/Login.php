@@ -17,4 +17,6 @@ class Login
         $query = mysqli_query($link, $sql);
         return mysqli_fetch_assoc($query);
     }
+
+
 }

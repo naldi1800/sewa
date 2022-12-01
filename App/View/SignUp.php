@@ -1,24 +1,12 @@
 <?php
 
-use App\Model\Login;  //Class login
+use App\Model\User;  //Class login
 use App\Contorller\Alert; //Class Alert
 
-if (isset($_POST['login'])) {
-    $cek = Login::Login($link, $_POST['user'], $_POST['pass'], $_POST['level']);
-    if ($cek != null) {
-        $_SESSION['isLogin'] = "Login";
-        if ($_POST['level'] == "Admin") {
-            $_SESSION['ADMIN'] = $cek['id'];
-        } else {
-            $_SESSION['USER']['id'] = $cek['id_user'];
-            $_SESSION['USER']['user'] = $cek['Username'];
-        }
-        Alert::Set("Anda", "Login", "berhasil");
-        header("Location: index.php?page=home&c=index");
-        exit;
-    } else {
-        Alert::Set("Anda", "Login | Username/Password Salah", "gagal");
-    }
+if (isset($_POST['signup'])) {
+    $cek = User::Insert($link, $_POST);
+    header("Location: index.php?page=home&c=index");
+    exit;
 }
 ?>
 
@@ -49,21 +37,44 @@ if (isset($_POST['login'])) {
 
     <link rel="stylesheet" href="TP/Login/css/style.css">
 
+    <!-- <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script> -->
 
 
     <title>Login</title>
 </head>
 
+<script>
+    function valid() {
+
+
+        var p = document.getElementById('pass').value;
+        var r = document.getElementById('repass').value;
+        if (p != r) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Your password not same',
+            });
+            return false;
+        }
+        Swal.fire({
+            icon: 'success',
+            title: 'Sukses',
+            text: 'Success to create account',
+        });
+    }
+</script>
+
 <body>
     <div class="container-fluid">
         <div class=" shadow p-3 mb-5 mt-2 bg-light rounded">
             <?= \App\Contorller\Alert::Get(); ?>
-
+            <!-- <button onclick="Swal.fire('ada ja');"> TEs</button> -->
             <section class="ftco-section">
                 <div class="container">
                     <div class="row justify-content-center">
                         <div class="col-md-6 text-center mb-5">
-                            <h1 class="heading-section">LOGIN</h1>
+                            <h1 class="heading-section">Sign Up</h1>
                         </div>
                     </div>
                     <div class="row justify-content-center">
@@ -73,32 +84,32 @@ if (isset($_POST['login'])) {
                                 <div class="login-wrap p-4 p-lg-5 order-md-last">
                                     <div class="d-flex">
                                         <div class="w-100">
-                                            <h3 class="" id="ket">Welcome</h3>
+                                            <h3 class="" id="ket">Create Account</h3>
                                             <h6 class="mb-4">
-                                                Input your Username, Password and select your account type. don't have account? 
-                                                <a href="signup.php">create now</a>
+                                                Input your Username, Email and your Password. already account?
+                                                <a href="login.php">login</a>
                                             </h6>
                                         </div>
                                     </div>
-                                    <form method="post" class="signin-form">
+                                    <form method="post" class="signin-form" onsubmit="return valid();">
                                         <div class="form-group mb-3">
                                             <label class="label" for="user" id="labeluser">Username</label>
                                             <input name="user" id="user" type="text" class="form-control" placeholder="Username" required>
+                                        </div>
+                                        <div class="form-group mb-3">
+                                            <label class="label" for="pass">Email</label>
+                                            <input name="email" id="email" type="email" class="form-control" placeholder="Email" required>
                                         </div>
                                         <div class="form-group mb-3">
                                             <label class="label" for="pass">Password</label>
                                             <input name="pass" id="pass" type="password" class="form-control" placeholder="Password" required>
                                         </div>
                                         <div class="form-group mb-3">
-                                            <label class="label" for="level">Level</label>
-                                            <select name="level" id="level" class="form-control" style="text-align:center;" required>
-                                                <option>Pilih</option>
-                                                <option value="Admin">Admin</option>
-                                                <option value="User">User</option>
-                                            </select>
+                                            <label class="label" for="repass">Re Password</label>
+                                            <input name="repass" id="repass" type="password" class="form-control" placeholder="Re Password" required>
                                         </div>
                                         <div class="form-group">
-                                            <button type="submit" name="login" class="form-control btn submit px-3" style="background-color: blue; color: white;">
+                                            <button type="submit" name="signup" class="form-control btn submit px-3" style="background-color: blue; color: white;">
                                                 Login
                                             </button>
                                         </div>
@@ -119,7 +130,8 @@ if (isset($_POST['login'])) {
     <script src="TP/Login/js/popper.js"></script>
     <script src="TP/Login/js/bootstrap.min.js"></script>
     <script src="TP/Login/js/main.js"></script>
-
+    <!-- <script src="<?= BASEURL ?>/TP/swal/sweetalert2.all.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
 </html>

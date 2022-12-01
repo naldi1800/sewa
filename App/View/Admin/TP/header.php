@@ -50,8 +50,12 @@
                        href="?page=user&c=index">Data User</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link <?= ($page == 'Sewa') ? 'active' : '' ?> text-center"
-                       href="?page=sewa&c=index">Sewa</a>
+                    <a class="nav-link <?= ($page == 'Peminjaman') ? 'active' : '' ?> text-center"
+                       href="?page=peminjaman&c=index">Sewa</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link <?= ($page == 'Selesai') ? 'active' : '' ?> text-center"
+                       href="?page=selesai&c=index">Selesai</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link"

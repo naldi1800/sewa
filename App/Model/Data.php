@@ -5,9 +5,9 @@ abstract class Data
     protected static $t_barang = "barang";
     protected static $t_sewa = "sewa";
     protected static $t_user = "user";
+    protected static $t_selesai = "sewa_selesai";
     protected static $t_mid = "mid";
 
-    protected static $ImageFolder = "App/Image/Mahasiswa/";
 
     public static abstract function GetAll($link);
 
