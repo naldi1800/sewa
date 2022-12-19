@@ -38,7 +38,7 @@ class Peminjaman extends Data
 
     public static function Delete($link, $id)
     {
-        $sql = "DELETE FROM " . parent::$t_sewa . " WHERE Kode_MK='" . $id . "'";
+        $sql = "DELETE FROM " . parent::$t_sewa . " WHERE id_sewa='" . $id . "'";
         $query = mysqli_query($link, $sql);
         if ($query) {
             Alert::Set("Data Peminjaman", "dihapus", "berhasil");

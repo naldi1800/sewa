@@ -10,7 +10,7 @@ if (isset($_POST["tambah"])) {
 ?>
 <div class="col-lg-8 mx-auto border rounded-3 border-primary">
     <h2 class="h2 text-center mt-3">
-        Form Obat
+        Form Mid
     </h2>
     <form class="row g-3 needs-validation p-3" method="post" novalidate>
         <div class="col-md-12">
@@ -23,7 +23,7 @@ if (isset($_POST["tambah"])) {
                 Please enter at least 3 letters
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <label for="harga_sewa" class="form-label">Harga Sewa</label>
             <input type="text" class="form-control" id="harga_sewa" name="harga_sewa" required>
             <div class="valid-feedback">
@@ -33,17 +33,7 @@ if (isset($_POST["tambah"])) {
                 Please enter in the Harga
             </div>
         </div>
-        <div class="col-md-4">
-            <label for="diskon" class="form-label">Diskon</label>
-            <input type="number" class="form-control" id="diskon" min="0" max="100" name="diskon" required>
-            <div class="valid-feedback">
-                Looks good!
-            </div>
-            <div class="invalid-feedback">
-            Please enter in the Diskon
-            </div>
-        </div>
-        <div class="col-md-4">
+        <div class="col-md-6">
             <label for="stok" class="form-label">Stok</label>
             <input type="number" class="form-control" id="stok" min="0" name="stok" required>
             <div class="valid-feedback">

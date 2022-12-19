@@ -24,33 +24,39 @@
 
         $datas = Peminjaman::GetAllWithUserId($link, $_SESSION['USER']['id']);
         $no = 0;
-        foreach ($datas as $data) :
-            $no++;
+        if ($datas != null) :
+            foreach ($datas as $data) :
+                $no++;
         ?>
-            <tr class="text-center align-middle">
-                <td width="5%" class="text-center"><?= $no ?></td>
-                <td width="15%"><?= $data['nama_barang'] ?></td>
-                <td width="15%"><?= $data['nik'] ?></td>
-                <td width="15%"><?= $data['namalengkap'] ?></td>
-                <td width="10%"><?= Fungsi::Rupiah($data['harga_sewa']) ?></td>
-                <td width="5%"><?= $data['diskon'] ?></td>
-                <td width="10%"><?= Fungsi::Rupiah($data['harga_sewa'] - ($data['harga_sewa'] * ($data['diskon']  / 100))) ?></td>
-                <td width="10%"><?= $data['keterangan'] ?></td>
+                <tr class="text-center align-middle">
+                    <td width="5%" class="text-center"><?= $no ?></td>
+                    <td width="15%"><?= $data['nama_barang'] ?></td>
+                    <td width="15%"><?= $data['nik'] ?></td>
+                    <td width="15%"><?= $data['namalengkap'] ?></td>
+                    <td width="10%"><?= Fungsi::Rupiah($data['harga_sewa']) ?></td>
+                    <td width="5%"><?= $data['diskon'] ?></td>
+                    <td width="10%"><?= Fungsi::Rupiah($data['harga_sewa'] - ($data['harga_sewa'] * ($data['diskon']  / 100))) ?></td>
+                    <td width="10%"><?= $data['keterangan'] ?></td>
 
-                <td width="15%" class="">
-                    <center>
-                        <?php if ($data['keterangan'] == "Waiting") : ?>
-                            <a onclick="confirm('Yakin ?')" href="?page=home&c=hapus&id=<?= $data['id_sewa'] ?>" class="text-center btn btn-danger">
-                                Batalkan
-                            </a>
-                        <?php else : ?>
-                            Tidak dapat dibatalkan lagi
-                        <?php endif; ?>
+                    <td width="15%" class="">
+                        <center>
+                            <?php if ($data['keterangan'] == "Waiting") : ?>
+                                <a onclick="confirm('Yakin ?')" href="?page=home&c=hapus&id=<?= $data['id_sewa'] ?>" class="text-center btn btn-danger">
+                                    Batalkan
+                                </a>
+                            <?php else : ?>
+                                Tidak dapat dibatalkan lagi
+                            <?php endif; ?>
 
 
-                    </center>
-                </td>
+                        </center>
+                    </td>
+                </tr>
+            <?php endforeach;
+        else : ?>
+            <tr>
+                <td class="text-center" colspan="9">Data Kosong</td>
             </tr>
-        <?php endforeach; ?>
+        <?php endif; ?>
     </tbody>
 </table>

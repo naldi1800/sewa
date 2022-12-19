@@ -54,7 +54,7 @@ class User extends Data
     }
 
     public static function UpdatePassword($link, $id, $data)
-    {
+    {       
         if (self::GetOldPasswordWithId($link, $id, md5($data['oldpass'])) != null) {
             $newpass = md5($data['newpass']);
             $sql = "UPDATE " . parent::$t_user . " SET " .

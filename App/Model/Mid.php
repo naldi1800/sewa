@@ -34,7 +34,7 @@ class Mid extends Data
         $sql = "UPDATE " . parent::$t_mid . " SET " .
             "nama_barang='" . $data['nama_barang'] .  "' ," .
             "harga_sewa='" . $data['harga_sewa'] .  "' ," .
-            "diskon='" . $data['diskon'] .  "' " .
+            "stok='" . $data['stok'] .  "' " .
             " WHERE id='" . $id . "'";
 
         $query = mysqli_query($link, $sql);
@@ -63,7 +63,6 @@ class Mid extends Data
         $sql = "INSERT INTO " . parent::$t_mid . " VALUES( null, '"
             . $data['nama_barang'] . "','"
             . $data['harga_sewa'] . "','"
-            . $data['diskon'] . "','"
             . $data['stok'] . "')";
 
         // var_dump($sql);

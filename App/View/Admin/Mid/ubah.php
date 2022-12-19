@@ -14,7 +14,7 @@ if (isset($_GET['id'])) {
 ?>
     <div class="col-lg-8 mx-auto border rounded-3 border-primary">
         <h2 class="h2 text-center mt-3">
-            Form Ubah Barang
+            Form Ubah Mid
         </h2>
         <form class="row g-3 needs-validation p-3" method="post" enctype="multipart/form-data" novalidate>
             <input type="text" class="form-control" id="id_barang" name="id_barang" value="<?= $data['id'] ?>" hidden>
@@ -28,7 +28,7 @@ if (isset($_GET['id'])) {
                     Please enter at least 3 letters
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="harga_sewa" class="form-label">Harga Sewa</label>
                 <input type="text" class="form-control" value="<?= $data['harga_sewa'] ?>" id="harga_sewa" name="harga_sewa" required>
                 <div class="valid-feedback">
@@ -38,19 +38,9 @@ if (isset($_GET['id'])) {
                     Please enter in the Harga
                 </div>
             </div>
-            <div class="col-md-4">
-                <label for="diskon" class="form-label">Diskon</label>
-                <input type="number" class="form-control" value="<?= $data['diskon'] ?>" id="diskon" min="0" max="100" name="diskon" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-                <div class="invalid-feedback">
-                    Please enter in the Diskon
-                </div>
-            </div>
-            <div class="col-md-4">
+            <div class="col-md-6">
                 <label for="stok" class="form-label">Stok</label>
-                <input type="number" class="form-control" value="<?= $data['stok'] ?>" id="stok" min="0" name="stok" disabled>
+                <input type="number" class="form-control" value="<?= $data['stok'] ?>" id="stok" min="0" name="stok" >
                 <div class="valid-feedback">
                     Looks good!
                 </div>

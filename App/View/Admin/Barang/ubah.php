@@ -51,7 +51,7 @@ if (isset($_GET['id'])) {
             </div>
             <div class="col-md-4">
                 <label for="stok" class="form-label">Stok</label>
-                <input type="number" class="form-control" value="<?= $data['stok'] ?>" id="stok" min="0" name="stok" disabled>
+                <input type="number" class="form-control" value="<?= $data['stok'] ?>" id="stok" min="0" max="100" name="stok" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>

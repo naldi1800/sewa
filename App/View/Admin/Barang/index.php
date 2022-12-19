@@ -1,5 +1,5 @@
 <h2 class="h2 text-center">
-   MID TEST (192218)
+   Data Barang
 </h2>
 <a href="?page=barang&c=tambah" class="btn btn-outline-success mb-3">Tambah</a>
 <table class="table table-hover table-bordered">
