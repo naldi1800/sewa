@@ -34,6 +34,7 @@ class Barang extends Data
         $sql = "UPDATE " . parent::$t_barang . " SET " .
             "nama_barang='" . $data['nama_barang'] .  "' ," .
             "harga_sewa='" . $data['harga_sewa'] .  "' ," .
+            "stok='" . $data['stok'] .  "' ," .
             "diskon='" . $data['diskon'] .  "', " .
             "updatetime=CURRENT_TIMESTAMP" .
             " WHERE id_barang='" . $id . "'";

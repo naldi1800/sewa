@@ -41,7 +41,7 @@
                     <td width="15%" class="">
                         <center>
                             <?php if ($data['keterangan'] == "Waiting") : ?>
-                                <a onclick="confirm('Yakin ?')" href="?page=home&c=hapus&id=<?= $data['id_sewa'] ?>" class="text-center btn btn-danger">
+                                <a onclick="confirm('Yakin ?')" href="?page=home&c=hapus&id=<?= $data['id_sewa'] ?>&idb=<?= $data['id_barang'] ?>" class="text-center btn btn-danger">
                                     Batalkan
                                 </a>
                             <?php else : ?>

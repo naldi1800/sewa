@@ -2,6 +2,8 @@
 
 use App\Contorller\Alert;
 use App\Model\Data;
+use App\Model\Barang;
+use mysqli;
 
 class Selesai extends Data{
 
@@ -22,11 +24,12 @@ class Selesai extends Data{
     public static function Delete($link, $id){}
 
     public static function Insert($link, $data){
-        $sql = "INSERT INTO " . parent::$t_mid . " VALUES( null, '"
+        $sql = "INSERT INTO " . parent::$t_selesai . " VALUES( null, '"
             . $data['id_sewa'] . "','"
-            . $data['denda'] . ", CURRENT_TIMESTAMP )";
+            . $data['denda'] . "' , CURRENT_TIMESTAMP )";
 
-        mysqli_query($link, $sql);
+       mysqli_query($link, $sql);
+        Barang::UpdateStok($link, $data['id_barang'], 1);
     }
 
 }

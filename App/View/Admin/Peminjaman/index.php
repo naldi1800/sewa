@@ -43,24 +43,24 @@
                 <td width="15%" class="">
                     <center>
                         <?php if ($data['keterangan'] == "Waiting") : ?>
-                            <a onclick="confirm('Yakin ?')" href="?page=peminjaman&c=proses&id=<?= $data['id_sewa'].'&p=Confirmation' ?>" class="text-center btn btn-success">
+                            <a onclick="confirm('Yakin ?')" href="?page=peminjaman&c=proses&idb=<?= $data['id_barang'] ?>&id=<?= $data['id_sewa'].'&p=Confirmation' ?>" class="text-center btn btn-success">
                                 Konfirmasi
                             </a>
                         <?php elseif ($data['keterangan'] == "Confirmation") : ?>
-                            <a onclick="confirm('Yakin ?')" href="?page=peminjaman&c=proses&id=<?= $data['id_sewa'].'&p=Delivery' ?>" class="text-center btn btn-success">
+                            <a onclick="confirm('Yakin ?')" href="?page=peminjaman&c=proses&idb=<?= $data['id_barang'] ?>&id=<?= $data['id_sewa'].'&p=Delivery' ?>" class="text-center btn btn-success">
                                 Kirim
                             </a>
                         <?php elseif ($data['keterangan'] == "Delivery") : ?>
-                            <a onclick="confirm('Yakin ?')" href="?page=peminjaman&c=proses&id=<?= $data['id_sewa'].'&p=Arrived' ?>" class="text-center btn btn-success">
+                            <a onclick="confirm('Yakin ?')" href="?page=peminjaman&c=proses&idb=<?= $data['id_barang'] ?>&id=<?= $data['id_sewa'].'&p=Arrived' ?>" class="text-center btn btn-success">
                                 Sampai
                             </a>
                         <?php elseif ($data['keterangan'] == "Arrived") : ?>
-                            <a onclick="confirm('Yakin ?')" href="?page=peminjaman&c=proses&id=<?= $data['id_sewa'].'&p=Returned' ?>" class="text-center btn btn-success">
+                            <a onclick="confirm('Yakin ?')" href="?page=peminjaman&c=proses&idb=<?= $data['id_barang'] ?>&id=<?= $data['id_sewa'].'&p=Returned' ?>" class="text-center btn btn-success">
                                 Kembali
                             </a>
                         <?php endif; ?>
 
-                        <a onclick="confirm('Yakin ?')" href="?page=peminjaman&c=hapus&id=<?= $data['id_sewa'] ?>" class="text-center btn btn-danger">
+                        <a onclick="confirm('Yakin ?')" href="?page=peminjaman&c=hapus&id=<?= $data['id_sewa'] ?>&idb=<?= $data['id_barang'] ?>" class="text-center btn btn-danger">
                             Hapus
                         </a>
                     </center>
